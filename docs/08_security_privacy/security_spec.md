@@ -127,3 +127,7 @@
 - [API 가이드라인](../04_api/api_guidelines.md)
 - [데이터 라이프사이클](../03_data/data_model.md#데이터-라이프사이클)
 - [Agent Long-term Memory (memsearch)](../03_data/memsearch_memory.md)
+- [관측성 (Observability)](../06_operations/observability.md)
+- [위험 관리 (Risk)](../07_risk_roadmap/risk_management.md)
+- [Infrastructure as Code](../06_operations/infrastructure_as_code.md)
+- [API 엔드포인트 (Endpoints)](../04_api/endpoints.md)

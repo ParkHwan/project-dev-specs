@@ -114,3 +114,4 @@
 - [배포 및 릴리즈 (Deployment)](./deployment_release.md)
 - [품질 및 비기능 요구사항 (Non-Functional)](../01_requirements/non_functional.md)
 - [Agent Long-term Memory (memsearch)](../03_data/memsearch_memory.md)
+- [보안 및 프라이버시 (Security)](../08_security_privacy/security_spec.md)

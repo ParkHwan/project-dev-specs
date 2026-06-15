@@ -101,3 +101,5 @@ flowchart TB
 ## 🔗 관련 문서
 - [시스템 디자인 (System Design)](./system_design.md)
 - [기술 스택 요약 (Tech Stack)](./tech_stack.md)
+- [비용 관리 (FinOps)](../06_operations/cost_management.md)
+- [Infrastructure as Code](../06_operations/infrastructure_as_code.md)

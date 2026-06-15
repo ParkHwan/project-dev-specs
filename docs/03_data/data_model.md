@@ -122,3 +122,5 @@ CREATE TABLE [table_name] (
 - [마이그레이션 전략 (Migration)](./migration_strategy.md)
 - [시스템 디자인 (System Design)](../02_architecture/system_design.md)
 - [Agent Long-term Memory (memsearch)](./memsearch_memory.md)
+- [데이터 파이프라인 (Pipeline)](./pipeline_spec.md)
+- [보안 및 프라이버시 (Security)](../08_security_privacy/security_spec.md)

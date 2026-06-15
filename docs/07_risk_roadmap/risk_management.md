@@ -71,3 +71,4 @@ flowchart LR
 ## 🔗 관련 문서
 - [프로젝트 로드맵 (Roadmap)](./roadmap.md)
 - [품질 게이트 (Quality Gate)](../05_engineering/testing_strategy.md)
+- [보안 및 프라이버시 (Security)](../08_security_privacy/security_spec.md)

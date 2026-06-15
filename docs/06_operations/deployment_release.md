@@ -130,3 +130,4 @@ flowchart LR
 - [관측성 및 모니터링 (Observability)](./observability.md)
 - [데이터 마이그레이션 전략 (Migration)](../03_data/migration_strategy.md)
 - [Agent Long-term Memory (memsearch)](../03_data/memsearch_memory.md)
+- [Infrastructure as Code](./infrastructure_as_code.md)

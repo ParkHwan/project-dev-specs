@@ -132,4 +132,5 @@ API 스펙은 **OpenAPI 3.1 문서 하나를 단일 소스(Single Source of Trut
 ## 🔗 관련 문서
 - [상세 엔드포인트 명세 (Endpoints)](./endpoints.md)
 - [보안 정책 (Security)](../08_security_privacy/security_spec.md)
+- [코딩 스타일 (Coding Style)](../05_engineering/coding_style.md)
 - [부록/참고 (OpenAPI 링크)](../99_appendix/references.md)
