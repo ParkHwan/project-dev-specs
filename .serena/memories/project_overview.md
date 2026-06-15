@@ -31,13 +31,13 @@ repo 루트 직속 배치:
 - security_spec 9.1 실제화: 9.1.1 OWASP Top10(2021) 대응표, 9.1.2 SDL 단계 체크, 9.1.3 규제(PIPA/GDPR)+DPIA. 9.2~9.8 유지.
 - resilience 패턴: api_guidelines 재시도/타임아웃/서킷브레이커/멱등성/벌크헤드.
 - 섹션 비번호화: docs 전체 헤딩 121개 번호 접두어 제거(설명형 헤딩), 앵커 5개·본문 숫자참조 16곳 수정, 번호 안내문 제거. 번호 충돌 근본 원인 해소. (archive/monolith는 보존용이라 번호 유지)
+- 양방향 상호참조: 강결합 짝 10개 대칭화(api_guidelines↔coding_style, deployment_arch↔cost/IaC, data_model↔pipeline/security, security_spec↔observability/risk/IaC/endpoints 등). 허브/상위/sink로의 역링크는 제외.
 
 ## 컨벤션 추가
 - 헤딩에 글로벌 섹션번호를 다시 붙이지 않는다(설명형 헤딩 유지). 문서 간 참조는 번호가 아니라 섹션명/파일 링크로 한다.
 
-## 남은 작업 (선택)
-- **[정합] 양방향 상호참조 보완(일부 역링크 누락)**.
-- 콘텐츠 심화(필수 항목) 완료. 이후는 실제 프로젝트에 템플릿을 채우는 단계.
+## 남은 작업
+- 템플릿 정비(P0~P2 + 이관 + 비번호화 + 상호참조)는 **완료**. 이후는 실제 프로젝트에 템플릿을 채우는 단계(플레이스홀더 → 실제 값, Build-Ready 게이트 통과).
 
 ## 컨벤션 / 주의
 - 문서는 한국어 우선. 수정은 항상 SoT(`docs/`)에서 → 필요 시 EN 동기화.
