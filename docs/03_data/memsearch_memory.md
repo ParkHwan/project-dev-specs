@@ -6,7 +6,7 @@
 
 ---
 
-## M1. 목적 및 범위
+## 목적 및 범위
 
 - 목적: 대화/작업/결정 이력을 Markdown 기반으로 저장하고, 다음 세션에서 검색/복원하여 개발 연속성을 확보한다.
 - 범위:
@@ -15,7 +15,7 @@
 
 ---
 
-## M2. 메모리 단위 및 스키마
+## 메모리 단위 및 스키마
 
 #### 저장 단위
 - `memory_note`: 단일 사실/결정/요약
@@ -37,10 +37,12 @@
 | updated_at | datetime | ✅ | 수정 시각 |
 | ttl_days | int | ✅ | 보존 기간 |
 | pii_masked | bool | ✅ | 마스킹 완료 여부 |
+| status | enum | ✅ | `verified` / `unverified` / `deprecated` (검색 시 verified 우선, deprecated 제외) |
+| outcome | enum | ✅ | `success` / `failure` (실패는 검증된 사후분석만 저장) |
 
 ---
 
-## M3. 검색 전략
+## 검색 전략
 
 - 검색 방식: `Vector + BM25 + RRF` 하이브리드
 - 기본 쿼리:
@@ -55,7 +57,7 @@
 
 ---
 
-## M4. 저장 정책
+## 저장 정책
 
 | 이벤트 | 저장 시점 | 저장 내용 |
 |--------|-----------|-----------|
@@ -76,7 +78,7 @@
 
 ---
 
-## M5. 개인정보/보안 정책
+## 개인정보/보안 정책
 
 - 저장 전 마스킹 필수:
 - 이메일, 전화번호, 주민번호/식별번호
@@ -90,7 +92,7 @@
 
 ---
 
-## M6. 운영 정책
+## 운영 정책
 
 - 인덱스 재생성(reindex): 주 1회 또는 스키마 변경 시
 - 백필(backfill): 신규 태그 체계 도입 시 최근 90일 대상
@@ -103,7 +105,7 @@
 
 ---
 
-## M7. 수용 기준 (Definition of Done)
+## 수용 기준 (Definition of Done)
 
 - [ ] memsearch 연동 코드가 빌드 파이프라인에서 정상 동작한다.
 - [ ] 저장/검색/삭제 E2E 테스트가 통과한다.
@@ -113,8 +115,21 @@
 
 ---
 
+## 자가학습·오염 방지 (에이전트 운영)
+
+에이전트 운영([../10_agent_ops/loop_and_memory_governance.md](../10_agent_ops/loop_and_memory_governance.md))과 결속한다.
+
+- **에피소드 기억 단일 권위**: 본 memsearch가 결정/태스크/실패의 단일 영속 저장소다. hermes 네이티브 FTS5·MEMORY.md의 영속 에피소드 저장은 비활성화하고, 진행 중 세션 맥락은 휘발(RAM)로만 둔다.
+- **검증 시점 = post-merge**: 인덱싱은 main/develop에 squash-merge된 산출물 + ADR에 대해서만 post-merge 훅에서 수행한다(테스트 통과만으로 자동 저장하지 않는다).
+- **자동 저장 금지**: 미검증 추론·임시 우회 코드는 저장하지 않는다.
+- **failure_memory**: 원시 실패 로그가 아니라 검증된 사후분석(증상→원인→해결)만 `outcome=failure`로 저장한다.
+- **상태 관리**: `status`로 `verified|unverified|deprecated`를 구분하고, 재색인 시 deprecated를 정리한다.
+- **절차 기억은 분리**: how-to(절차)는 hermes SKILL.md가 담당하며 PR 리뷰 후 승격한다(여기 저장 대상 아님).
+
 ## 🔗 관련 문서
 - [데이터 모델](./data_model.md)
 - [마이그레이션 전략](./migration_strategy.md)
 - [관측성 및 모니터링](../06_operations/observability.md)
 - [보안 및 프라이버시](../08_security_privacy/security_spec.md)
+- [에이전트 운영 모델](../10_agent_ops/operating_model.md)
+- [루프·메모리 거버넌스](../10_agent_ops/loop_and_memory_governance.md)
