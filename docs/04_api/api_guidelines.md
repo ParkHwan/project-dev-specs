@@ -99,6 +99,36 @@ API 스펙은 **OpenAPI 3.1 문서 하나를 단일 소스(Single Source of Trut
 
 ---
 
+## 8.7 복원력(Resilience) 패턴
+
+분산 환경에서 일시 장애가 연쇄로 번지지 않도록, 호출 측·서버 측 모두 아래 패턴을 적용한다.
+
+### 8.7.1 재시도 (Retry)
+- **대상**: 멱등 요청(GET/PUT/DELETE, `Idempotency-Key` 있는 POST)과 일시 오류(`429`, `503`, 네트워크 타임아웃)만.
+- **백오프**: 지수 백오프 + **jitter**. 예: `base=[200ms]`, `factor=2`, `max=[5s]`, `max_attempts=[3]`.
+- **금지**: 비멱등 요청 무분별 재시도, 4xx(검증/권한) 재시도.
+- `Retry-After` 헤더가 오면 그 값을 우선한다.
+
+### 8.7.2 타임아웃
+- 모든 외부 호출에 **연결/응답 타임아웃**을 명시한다(무한 대기 금지). 예: connect `[1s]`, read `[3s]`.
+- 상위 요청 예산(deadline)을 하위 호출로 전파(deadline propagation)한다.
+
+### 8.7.3 서킷 브레이커
+- 실패율 `[50%]` / `[20]`건 초과 시 **Open**(즉시 실패), `[30s]` 후 **Half-Open** 시험 호출, 성공 시 **Closed**.
+- Open 동안에는 폴백(캐시/기본값/축소 응답)을 반환한다.
+
+### 8.7.4 멱등성 / 중복 방지
+- 부작용 있는 POST는 `Idempotency-Key`로 중복 실행을 차단한다(→ 8.4, [endpoints](./endpoints.md)).
+- 메시지 큐 소비자는 **at-least-once** 전제로 멱등 처리(중복 키/처리 마커)한다.
+
+### 8.7.5 부하 차단 (Bulkhead / Rate Limit)
+- 의존성별 동시성 격리(bulkhead)로 한 의존성 장애가 전체를 잠식하지 않게 한다.
+- 과부하 시 우아한 저하(graceful degradation)와 `429`/`503` + `Retry-After`로 보호한다.
+
+> 임계치([base/factor/max_attempts], 서킷 조건 등)는 NFR(→ [non_functional](../01_requirements/non_functional.md))의 지연/에러버짓 목표에 맞춰 확정한다.
+
+---
+
 ## 🔗 관련 문서
 - [상세 엔드포인트 명세 (Endpoints)](./endpoints.md)
 - [보안 정책 (Security)](../08_security_privacy/security_spec.md)
