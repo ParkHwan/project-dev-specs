@@ -32,6 +32,7 @@ flowchart TB
         Cache[(Cache)]
         Queue[(Message Queue)]
         Storage[(Object Storage)]
+        Memory[(memsearch + Milvus)]
     end
 
     subgraph Monitoring["Observability"]
@@ -47,11 +48,13 @@ flowchart TB
     API --> DB
     API --> Cache
     API --> Queue
+    API --> Memory
     
     Queue --> Worker
     Scheduler --> Worker
     Worker --> DB
     Worker --> Storage
+    Worker --> Memory
     
     API --> ExtService2
     
@@ -163,3 +166,4 @@ sequenceDiagram
 - [배포 아키텍처 (Deployment)](./deployment_arch.md)
 - [기술 스택 요약 (Tech Stack)](./tech_stack.md)
 - [데이터 모델 (Data Model)](../03_data/data_model.md)
+- [Agent Long-term Memory (memsearch)](../03_data/memsearch_memory.md)

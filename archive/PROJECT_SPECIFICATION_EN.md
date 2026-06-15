@@ -1,5 +1,13 @@
 # PROJECT SPECIFICATION TEMPLATE (EN)
 
+> 🌐 **TRANSLATION — 한국어 모듈형 `docs/`가 원본(Source of Truth)입니다.**
+> ⚠️ 이 영문본은 1세대 monolith를 번역한 것으로 **모듈형 구조와 어긋난 stale 상태**입니다(참고용).
+> 원본: [`../docs/PROJECT_SPECIFICATION.md`](../docs/PROJECT_SPECIFICATION.md) 및 하위 모듈 문서.
+> 동기화 정책: [`../docs/99_appendix/references.md`](../docs/99_appendix/references.md)의 "문서 동기화 정책".
+>
+> - **마지막 원본 동기화일**: [YYYY-MM-DD]
+> - **동기화 기준 원본 버전**: 1.1.0 (Modular)
+
 > **Template Version**: 1.0.0  
 > **Last Updated**: 2026-03-24  
 > **Based on**: Google PRD, Microsoft SDL, Apple HIG, AWS Well-Architected Framework

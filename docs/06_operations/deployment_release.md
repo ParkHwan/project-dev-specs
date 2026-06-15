@@ -114,6 +114,17 @@ flowchart LR
 
 ---
 
+## 12.7 memsearch 배포 체크리스트
+
+- [ ] memsearch 버전 고정 및 변경 로그 확인
+- [ ] Milvus 컬렉션/인덱스 스키마 호환성 확인
+- [ ] 재색인 필요 여부 판단 및 백필 계획 수립
+- [ ] 메모리 쓰기 실패 폴백 경로 검증
+- [ ] 배포 후 `memory_recall_hit_ratio`, `memory_recall_latency_seconds` 모니터링
+
+---
+
 ## 🔗 관련 문서
 - [관측성 및 모니터링 (Observability)](./observability.md)
 - [데이터 마이그레이션 전략 (Migration)](../03_data/migration_strategy.md)
+- [Agent Long-term Memory (memsearch)](../03_data/memsearch_memory.md)

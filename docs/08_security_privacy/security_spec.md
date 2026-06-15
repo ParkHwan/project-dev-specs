@@ -72,6 +72,21 @@
 
 ---
 
+## 9.8 Agent Memory 보안 (memsearch)
+
+- 저장 전 민감정보 필터링:
+- [ ] 이메일/전화번호/주민번호 패턴 마스킹
+- [ ] 액세스 토큰/시크릿/API 키 제거
+- [ ] 원문 프롬프트 내 PII 치환
+- 접근 정책:
+- 프로젝트 네임스페이스 단위 격리
+- 읽기/쓰기 권한 분리(최소권한 원칙)
+- 감사:
+- 메모리 read/write/delete 이벤트 감사 로그 보관
+
+---
+
 ## 🔗 관련 문서
 - [API 가이드라인](../04_api/api_guidelines.md)
 - [데이터 라이프사이클](../03_data/data_model.md#73-데이터-라이프사이클)
+- [Agent Long-term Memory (memsearch)](../03_data/memsearch_memory.md)

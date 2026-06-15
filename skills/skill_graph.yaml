@@ -1,0 +1,113 @@
+version: 1
+root_spec: BUILD_SPEC_TEMPLATE.md
+root_skill: build-spec-gate
+nodes:
+  - build-spec-gate
+  - requirements-problem-goals
+  - requirements-stakeholders
+  - requirements-functional
+  - requirements-non-functional
+  - architecture-tech-stack
+  - architecture-system-design
+  - architecture-deployment
+  - data-model
+  - data-migration
+  - data-pipeline
+  - agent-memory-memsearch
+  - api-guidelines
+  - api-endpoints
+  - engineering-coding-style
+  - engineering-testing-strategy
+  - ux-ui-spec
+  - operations-observability
+  - operations-deployment-release
+  - operations-iac
+  - operations-cost-management
+  - security-spec
+  - risk-management
+  - roadmap
+  - glossary
+  - appendix-references
+edges:
+  - from: build-spec-gate
+    to: requirements-problem-goals
+  - from: build-spec-gate
+    to: requirements-stakeholders
+  - from: build-spec-gate
+    to: requirements-functional
+  - from: build-spec-gate
+    to: requirements-non-functional
+  - from: requirements-stakeholders
+    to: requirements-functional
+  - from: requirements-problem-goals
+    to: architecture-tech-stack
+  - from: requirements-functional
+    to: architecture-tech-stack
+  - from: requirements-non-functional
+    to: architecture-tech-stack
+  - from: architecture-tech-stack
+    to: architecture-system-design
+  - from: architecture-system-design
+    to: architecture-deployment
+  - from: requirements-functional
+    to: data-model
+  - from: data-model
+    to: data-migration
+  - from: data-model
+    to: data-pipeline
+  - from: data-pipeline
+    to: operations-observability
+  - from: data-pipeline
+    to: risk-management
+  - from: data-model
+    to: agent-memory-memsearch
+  - from: requirements-functional
+    to: api-guidelines
+  - from: api-guidelines
+    to: agent-memory-memsearch
+  - from: api-guidelines
+    to: api-endpoints
+  - from: data-model
+    to: api-endpoints
+  - from: requirements-non-functional
+    to: security-spec
+  - from: requirements-functional
+    to: engineering-coding-style
+  - from: requirements-non-functional
+    to: engineering-testing-strategy
+  - from: requirements-functional
+    to: ux-ui-spec
+  - from: requirements-non-functional
+    to: ux-ui-spec
+  - from: ux-ui-spec
+    to: engineering-testing-strategy
+  - from: architecture-system-design
+    to: operations-observability
+  - from: architecture-deployment
+    to: operations-deployment-release
+  - from: operations-observability
+    to: operations-deployment-release
+  - from: architecture-deployment
+    to: operations-iac
+  - from: operations-iac
+    to: operations-deployment-release
+  - from: operations-iac
+    to: operations-cost-management
+  - from: architecture-deployment
+    to: operations-cost-management
+  - from: operations-cost-management
+    to: risk-management
+  - from: security-spec
+    to: risk-management
+  - from: engineering-testing-strategy
+    to: risk-management
+  - from: operations-deployment-release
+    to: risk-management
+  - from: agent-memory-memsearch
+    to: risk-management
+  - from: risk-management
+    to: roadmap
+  - from: roadmap
+    to: glossary
+  - from: glossary
+    to: appendix-references

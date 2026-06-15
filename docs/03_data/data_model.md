@@ -97,6 +97,26 @@ CREATE TABLE [table_name] (
 
 ---
 
+## 7.4 Agent Memory 스키마 (memsearch)
+
+#### memory_note 컬렉션
+
+| 필드 | 타입 | 필수 | 설명 |
+|------|------|:----:|------|
+| memory_id | STRING | ✅ | 메모리 고유 식별자 |
+| project_id | STRING | ✅ | 프로젝트 구분 |
+| session_id | STRING | ✅ | 세션 구분 |
+| task_id | STRING | ✅ | 스토리/태스크 구분 |
+| content_md | TEXT | ✅ | Markdown 본문 |
+| summary | TEXT | ✅ | 검색용 요약 |
+| tags | ARRAY\<STRING> | ✅ | 기능/도메인 태그 |
+| created_at | TIMESTAMP | ✅ | 생성 시각 |
+| ttl_days | INT | ✅ | 보존 기간 |
+| pii_masked | BOOLEAN | ✅ | 마스킹 완료 여부 |
+
+---
+
 ## 🔗 관련 문서
 - [마이그레이션 전략 (Migration)](./migration_strategy.md)
 - [시스템 디자인 (System Design)](../02_architecture/system_design.md)
+- [Agent Long-term Memory (memsearch)](./memsearch_memory.md)

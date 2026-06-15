@@ -52,6 +52,9 @@
 |-----------|------|------|------|
 | `http_requests_total` | Counter | method, path, status | 총 요청 수 |
 | `http_request_duration_seconds` | Histogram | method, path | 요청 지연 |
+| `memory_recall_latency_seconds` | Histogram | project_id, memory_type | 메모리 검색 지연 |
+| `memory_recall_hit_ratio` | Gauge | project_id | 메모리 검색 적중률 |
+| `memory_write_total` | Counter | project_id, result | 메모리 저장 건수 |
 | `[custom_metric]` | [타입] | [라벨] | [설명] |
 
 #### 인프라 메트릭
@@ -94,6 +97,18 @@
 
 ---
 
+## 11.7 memsearch 운영 지표
+
+| 항목 | 목표 | 알림 기준 |
+|------|------|-----------|
+| 검색 지연 p95 | ≤ 300ms | p95 > 500ms (15분) |
+| 검색 적중률 | ≥ 70% | 60% 미만 1시간 지속 |
+| 저장 실패율 | < 0.5% | 1% 초과 10분 지속 |
+| 재색인 성공률 | 100% | 실패 즉시 Critical |
+
+---
+
 ## 🔗 관련 문서
 - [배포 및 릴리즈 (Deployment)](./deployment_release.md)
 - [품질 및 비기능 요구사항 (Non-Functional)](../01_requirements/non_functional.md)
+- [Agent Long-term Memory (memsearch)](../03_data/memsearch_memory.md)
