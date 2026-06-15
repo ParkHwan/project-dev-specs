@@ -23,10 +23,13 @@ repo 루트 직속 배치:
 - P0~P2(2026-06-15): SoT 배너, 경로 통일, 허브 Quick Nav/매트릭스, 섹션번호 충돌 해소(tech_stack 6.6), 플레이스홀더 표준규칙, 빈약문서 4종 보강+ADR 템플릿, OpenAPI 정책, 신규문서 4종(ui_spec/cost_management/iac/pipeline_spec)+스킬/그래프 반영, 한/영 동기화 정책.
 - 레이아웃 B 평탄화: 스킬 레이어를 repo 루트로 이동, `docs/` 루트 직속화, 경로 28곳 재정렬, monolith/EN/분석본 `archive/`로, MAC 복구보고서는 repo 밖 `/Users/parkhwan/개인/`로 분리(무결, 명세와 무관).
 
+## 완료(이관/베이스라인)
+- git 베이스라인: origin을 project-dev-specs로 재지정, .gitignore 추가, .serena/memories 포함 커밋, 원격 초기커밋 병합(README는 사용자본 채택) 후 main push 동기화.
+- README 보강: SoT/레이아웃/경로 규약/Build-Ready 사용법/스킬 실행순서/문서 색인 추가.
+
 ## 남은 작업 (다음 세션 우선순위)
-- **[정리] git 초기 커밋** — project-dev-specs 원격에 첫 커밋 구조 잡기(현재 로컬 변경 미커밋).
-- **[정합] 하위문서 메타데이터 헤더, 양방향 상호참조, 섹션번호 근본 비번호화(선택)**.
-- **[콘텐츠] `endpoints.md` 리소스별 확장, `security_spec` 체크리스트 실제화, resilience 패턴, `README.md` 보강(현재 2줄)**.
+- **[정합] 하위문서 메타데이터 헤더(`> Last Updated | Status | Owner`), 양방향 상호참조, 섹션번호 근본 비번호화(선택)**.
+- **[콘텐츠] `endpoints.md` 리소스별 확장(+OpenAPI 연계), `security_spec` 체크리스트 실제화, resilience 패턴**.
 
 ## 컨벤션 / 주의
 - 문서는 한국어 우선. 수정은 항상 SoT(`docs/`)에서 → 필요 시 EN 동기화.
