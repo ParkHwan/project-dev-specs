@@ -6,7 +6,7 @@
 
 ---
 
-## 6.1 High-Level Architecture
+## High-Level Architecture
 
 > 💡 **작성 가이드**: 전체 시스템의 주요 구성요소와 외부 시스템 연동을 표현합니다.
 
@@ -65,7 +65,7 @@ flowchart TB
 
 ---
 
-## 6.2 Component Diagram
+## Component Diagram
 
 > 💡 **작성 가이드**: 애플리케이션 내부의 레이어/모듈 구조를 표현합니다.
 
@@ -113,11 +113,11 @@ flowchart TB
 
 ---
 
-## 6.3 Data Flow Diagram
+## Data Flow Diagram
 
 > 💡 **작성 가이드**: 주요 데이터의 흐름을 시퀀스 또는 플로우차트로 표현합니다.
 
-#### 6.3.1 주요 플로우 (Flowchart)
+#### 주요 플로우 (Flowchart)
 ```mermaid
 flowchart LR
     A["1. 요청 수신"] --> B["2. 인증/인가"]
@@ -130,7 +130,7 @@ flowchart LR
     B -->|실패| G
 ```
 
-#### 6.3.2 상세 시퀀스 (Sequence Diagram)
+#### 상세 시퀀스 (Sequence Diagram)
 ```mermaid
 sequenceDiagram
     autonumber

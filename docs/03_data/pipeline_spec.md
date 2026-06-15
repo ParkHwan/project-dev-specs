@@ -6,7 +6,7 @@
 
 ---
 
-## 7a.1 파이프라인 개요
+## 파이프라인 개요
 
 ```mermaid
 flowchart LR
@@ -23,7 +23,7 @@ flowchart LR
 
 ---
 
-## 7a.2 스케줄링 / 오케스트레이션
+## 스케줄링 / 오케스트레이션
 
 | 항목 | 내용 |
 |------|------|
@@ -34,7 +34,7 @@ flowchart LR
 
 ---
 
-## 7a.3 데이터 품질 (Data Quality)
+## 데이터 품질 (Data Quality)
 
 - 검증 도구: [Great Expectations / dbt test / 커스텀]
 - 필수 체크: [스키마 일치, 결측치 임계, 유니크/범위, 행 수 이상치]
@@ -42,7 +42,7 @@ flowchart LR
 
 ---
 
-## 7a.4 멱등성 / 재처리 (Backfill)
+## 멱등성 / 재처리 (Backfill)
 
 - 각 실행은 멱등(같은 파티션 재실행 시 중복 없음 — 파티션 overwrite 또는 upsert).
 - **Backfill**: [기간 파라미터화], 운영 부하를 고려한 청크/병렬도 제한.
@@ -50,14 +50,14 @@ flowchart LR
 
 ---
 
-## 7a.5 파티셔닝 / 성능
+## 파티셔닝 / 성능
 
 - 파티셔닝: [날짜/키 기준], 클러스터링: [컬럼].
 - 대용량: [청크 분할, multiprocessing/asyncio 등] 전략.
 
 ---
 
-## 7a.6 리니지 / 관측성
+## 리니지 / 관측성
 
 - 데이터 리니지 추적: [도구/방법]
 - 파이프라인 SLA: 신선도(freshness) [목표], 지연 알림 임계치(→ [관측성](../06_operations/observability.md)).

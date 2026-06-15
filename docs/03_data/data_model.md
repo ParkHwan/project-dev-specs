@@ -6,7 +6,7 @@
 
 ---
 
-## 7.1 Entity Relationship Diagram
+## Entity Relationship Diagram
 
 > 💡 **작성 가이드**: Mermaid erDiagram을 사용하여 ERD를 작성합니다.
 
@@ -62,7 +62,7 @@ erDiagram
 
 ---
 
-## 7.2 테이블/컬렉션 스키마 상세
+## 테이블/컬렉션 스키마 상세
 
 #### [Entity 명] 테이블
 
@@ -89,7 +89,7 @@ CREATE TABLE [table_name] (
 
 ---
 
-## 7.3 데이터 라이프사이클
+## 데이터 라이프사이클
 
 | 데이터 유형 | 보존 기간 | 삭제 조건 | 백업 주기 |
 |-------------|-----------|-----------|-----------|
@@ -99,7 +99,7 @@ CREATE TABLE [table_name] (
 
 ---
 
-## 7.4 Agent Memory 스키마 (memsearch)
+## Agent Memory 스키마 (memsearch)
 
 #### memory_note 컬렉션
 

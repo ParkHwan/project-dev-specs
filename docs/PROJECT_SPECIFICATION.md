@@ -22,7 +22,7 @@
 
 | 섹션 | Web App | API/Backend | ML/AI | Data Pipeline | Library | 상세 문서 링크 |
 |------|:-------:|:-----------:|:-----:|:-------------:|:-------:|---------------|
-| Executive Summary | ✅ | ✅ | ✅ | ✅ | ✅ | [본문 요약](#1-executive-summary) |
+| Executive Summary | ✅ | ✅ | ✅ | ✅ | ✅ | [본문 요약](#executive-summary) |
 | Problem & Goals | ✅ | ✅ | ✅ | ✅ | ✅ | [01_requirements/problem_and_goals.md](./01_requirements/problem_and_goals.md) |
 | Stakeholders | ✅ | ✅ | ✅ | ✅ | ⚪ | [01_requirements/stakeholders.md](./01_requirements/stakeholders.md) |
 | Functional Req. | ✅ | ✅ | ✅ | ✅ | ✅ | [01_requirements/functional.md](./01_requirements/functional.md) |
@@ -44,7 +44,7 @@
 | Roadmap | ✅ | ✅ | ✅ | ✅ | ✅ | [07_risk_roadmap/roadmap.md](./07_risk_roadmap/roadmap.md) |
 | Glossary | ✅ | ✅ | ✅ | ✅ | ✅ | [07_risk_roadmap/glossary.md](./07_risk_roadmap/glossary.md) |
 | Appendix / ADR | ✅ | ✅ | ✅ | ✅ | ✅ | [99_appendix/references.md](./99_appendix/references.md) |
-| Responsible AI | ⚪ | ⚪ | ✅ | ⚪ | ⚪ | [01_requirements/non_functional.md#55-책임있는-ai](./01_requirements/non_functional.md#55-책임있는-ai) |
+| Responsible AI | ⚪ | ⚪ | ✅ | ⚪ | ⚪ | [01_requirements/non_functional.md#책임있는-ai](./01_requirements/non_functional.md#책임있는-ai) |
 | UI/UX & Accessibility | ✅ | ⚪ | ⚪ | ⚪ | ⚪ | [09_ux/ui_spec.md](./09_ux/ui_spec.md) |
 | Cost / FinOps | ✅ | ✅ | ✅ | ✅ | ⚪ | [06_operations/cost_management.md](./06_operations/cost_management.md) |
 | IaC | ✅ | ✅ | ✅ | ✅ | ⚪ | [06_operations/infrastructure_as_code.md](./06_operations/infrastructure_as_code.md) |
@@ -54,24 +54,24 @@
 
 ---
 
-## 1. Executive Summary
+## Executive Summary
 
 > 💡 **작성 가이드**: 프로젝트의 핵심을 5분 안에 이해할 수 있도록 요약합니다.
 
-### 1.1 프로젝트 한 줄 정의
+### 프로젝트 한 줄 정의
 > [TODO] 프로젝트의 핵심 가치를 한 문장으로 정의
 
-### 1.2 핵심 가치 제안 (Value Proposition)
+### 핵심 가치 제안 (Value Proposition)
 | 대상 | 현재 문제 | 제안 솔루션 | 기대 효과 |
 |------|-----------|-------------|-----------|
 | [사용자 그룹 A] | [문제점] | [솔루션] | [정량적 효과] |
 
-### 1.3 프로젝트 범위 (Scope)
+### 프로젝트 범위 (Scope)
 - **In-Scope**: [포함 기능/범위]
 - **Out-of-Scope**: [제외 기능/범위]
 - **Future Scope**: [향후 고려 사항]
 
-### 1.4 주요 가정 및 제약사항
+### 주요 가정 및 제약사항
 | 구분 | 내용 | 영향도 | 비고 |
 |------|------|:------:|------|
 | **가정** | [가정 사항] | H/M/L | |

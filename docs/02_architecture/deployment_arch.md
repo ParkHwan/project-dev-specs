@@ -6,7 +6,7 @@
 
 ---
 
-## 6.4 Cloud Deployment Architecture
+## Cloud Deployment Architecture
 
 ```mermaid
 flowchart TB
@@ -57,7 +57,7 @@ flowchart TB
 
 ---
 
-## 6.5 Kubernetes Deployment (Optional)
+## Kubernetes Deployment (Optional)
 
 ```mermaid
 flowchart TB

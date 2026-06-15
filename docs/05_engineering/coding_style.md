@@ -8,7 +8,7 @@
 
 ---
 
-## 5.6 공통 원칙
+## 공통 원칙
 
 - **Clean Code**: SOLID, KISS, DRY 원칙을 준수합니다.
 - **Naming**: 의도가 명확히 드러나는 이름을 씁니다. (의미 불분명한 약어 지양)
@@ -17,7 +17,7 @@
 
 ---
 
-## 5.6.1 언어별 네이밍 규칙
+## 언어별 네이밍 규칙
 
 > ⚠️ 네이밍은 **각 언어의 공식 관례를 따릅니다.** 언어 간 공통 규칙으로 강제하지 않습니다.
 
@@ -49,7 +49,7 @@
 
 ---
 
-## 5.6.2 도구 표준 (언어별)
+## 도구 표준 (언어별)
 
 | 언어 | Formatter | Linter | Type Check |
 |------|-----------|--------|------------|
@@ -59,14 +59,14 @@
 
 ---
 
-## 5.6.3 Import 순서 / 에러 핸들링
+## Import 순서 / 에러 핸들링
 
 - **Import 순서**: 표준 라이브러리 → 서드파티 → 내부 모듈 (그룹 간 빈 줄). 도구 자동 정렬(isort/Ruff/eslint-plugin-import) 사용.
 - **에러 핸들링**: 예외는 의미 있는 타입으로 던지고 삼키지 않는다(로그+재던지기 또는 명시적 처리). 사용자 노출 메시지와 내부 로그를 분리한다(→ [API 에러 모델](../04_api/api_guidelines.md)).
 
 ---
 
-## 5.7 Git Workflow & Commit
+## Git Workflow & Commit
 
 - **Branch Strategy**: `main`(Production), `develop`(Staging), `feature/*`(Feature)
 - **Commit Format**: `feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `chore:`
@@ -81,7 +81,7 @@
 
 ---
 
-## 5.8 개발 환경 설정 (Local Setup)
+## 개발 환경 설정 (Local Setup)
 
 - **Node.js**: [v20.x 이상]
 - **Python**: [v3.11 이상]
