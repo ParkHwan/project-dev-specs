@@ -1,5 +1,7 @@
 # 🏗️ Infrastructure as Code (IaC)
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 인프라를 코드로 관리하는 도구·구조·운영 규칙을 정의합니다. 수동 콘솔 변경(ClickOps)은 금지를 원칙으로 합니다.
 
 ---

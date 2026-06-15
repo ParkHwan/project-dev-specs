@@ -1,5 +1,7 @@
 # 🏗️ System Design
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 시스템 구조를 다양한 관점에서 시각화합니다. (C4 Model 권장)
 
 ---

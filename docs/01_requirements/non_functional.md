@@ -1,5 +1,7 @@
 # ⚡ Non-Functional Requirements
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 시스템의 품질 속성을 정의합니다. (Google SRE, Microsoft SDL 원칙 적용)
 
 ---

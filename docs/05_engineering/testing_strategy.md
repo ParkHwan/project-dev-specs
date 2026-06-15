@@ -1,5 +1,7 @@
 # 🧪 Testing Strategy
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 테스트 피라미드 원칙에 따라 전략을 수립합니다.
 
 ---

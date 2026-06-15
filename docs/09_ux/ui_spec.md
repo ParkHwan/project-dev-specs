@@ -1,5 +1,7 @@
 # 🎨 UI/UX & Accessibility Spec
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: Web App 유형 프로젝트의 화면/상호작용/접근성 기준을 정의합니다. (API/Library 유형은 생략 가능)
 
 ---

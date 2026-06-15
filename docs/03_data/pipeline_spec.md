@@ -1,5 +1,7 @@
 # 🔀 Data Pipeline Spec
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: ETL/ELT 데이터 파이프라인의 설계·품질·운영 기준을 정의합니다. (Data Pipeline / ML 유형 프로젝트 필수, 그 외 선택)
 
 ---

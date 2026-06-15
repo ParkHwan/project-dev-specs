@@ -1,5 +1,7 @@
 # 💰 Cost Management (FinOps)
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 클라우드/인프라 비용을 예측·추적·최적화하는 기준을 정의합니다. 비용은 NFR이자 운영 책임입니다.
 
 ---

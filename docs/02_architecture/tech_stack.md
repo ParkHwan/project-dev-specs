@@ -1,5 +1,7 @@
 # 🛠️ Tech Stack Summary
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 사용 기술과 **선택 근거·버전 정책·대안·운영 리스크**까지 함께 관리합니다. 단순 나열이 아니라 "왜 이걸 골랐는가"가 남아야 합니다. 중요한 선택은 ADR로 연결합니다(→ [references.md](../99_appendix/references.md)).
 
 > ℹ️ 섹션 번호 안내: 본 문서는 `6.6`을 사용합니다. (`system_design.md` = 6.1~6.3, `deployment_arch.md` = 6.4~6.5)

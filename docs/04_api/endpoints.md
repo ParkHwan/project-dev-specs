@@ -1,5 +1,7 @@
 # 📡 API Endpoints Spec
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 각 엔드포인트를 상세히 문서화합니다.
 
 ---

@@ -1,5 +1,7 @@
 # 🔄 Data Migration Strategy
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 스키마/데이터 마이그레이션을 무중단·롤백 가능하게 수행하기 위한 정책과 절차를 정의합니다. 각 마이그레이션은 PR 단위로 이 문서의 체크리스트를 충족해야 합니다.
 
 ---

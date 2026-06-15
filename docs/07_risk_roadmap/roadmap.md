@@ -1,5 +1,7 @@
 # 📅 Roadmap & Milestones
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 프로젝트 일정과 마일스톤을 정의합니다.
 
 ---

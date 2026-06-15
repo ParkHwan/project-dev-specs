@@ -1,5 +1,7 @@
 # 📋 Functional Requirements
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: User Story 형식으로 기능 요구사항을 정의합니다.
 
 ---

@@ -1,5 +1,7 @@
 # 💾 Data Model & Schema
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 데이터 구조와 관계를 정의합니다.
 
 ---

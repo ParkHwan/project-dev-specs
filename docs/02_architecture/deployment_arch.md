@@ -1,5 +1,7 @@
 # 🚀 Deployment Architecture
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 인프라 배포 구조를 표현합니다.
 
 ---

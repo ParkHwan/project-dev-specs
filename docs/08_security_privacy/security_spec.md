@@ -1,5 +1,7 @@
 # 🛡️ Security & Privacy
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: Microsoft SDL(Security Development Lifecycle) 원칙을 적용합니다.
 
 ---

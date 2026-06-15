@@ -1,5 +1,7 @@
 # ⚠️ Risk Management
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 프로젝트 위험을 사전에 식별하고 완화 전략을 수립합니다.
 
 ---

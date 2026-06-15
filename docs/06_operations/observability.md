@@ -1,5 +1,7 @@
 # 👁️ Observability & Monitoring
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: Google SRE의 골든 시그널을 기반으로 관측성을 설계합니다.
 
 ---

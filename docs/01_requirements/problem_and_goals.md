@@ -1,5 +1,7 @@
 # 🎯 Problem Statement & Goals
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: "왜 이 프로젝트가 필요한가?"에 대한 명확한 답변을 제공합니다.
 
 ---

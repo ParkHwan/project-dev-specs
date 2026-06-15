@@ -1,5 +1,7 @@
 # 📚 Appendix & References
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 ---
 
 ## A. Architecture Decision Records (ADR)

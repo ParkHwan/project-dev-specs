@@ -1,5 +1,7 @@
 # 🧠 Agent Long-term Memory (memsearch)
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 에이전트가 이전 문맥을 안정적으로 재사용할 수 있도록 memsearch 기반 장기기억 규격을 정의합니다.
 
 ---

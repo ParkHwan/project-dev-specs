@@ -1,5 +1,7 @@
 # 💻 Coding Style & Guidelines
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 프로젝트의 일관성을 위한 코드 스타일 및 컨벤션을 정의합니다. **언어별 관례를 우선**하며, 팀 표준 언어를 먼저 고정한 뒤 해당 섹션만 적용합니다.
 
 > **팀 표준 언어**: [예: Python(백엔드) + TypeScript(프론트)] — 사용하지 않는 언어 섹션은 삭제하세요.

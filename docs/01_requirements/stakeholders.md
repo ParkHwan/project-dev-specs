@@ -1,5 +1,7 @@
 # 🤝 Stakeholders & RACI
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 프로젝트 관련 모든 이해관계자와 책임을 명확히 합니다.
 
 ---

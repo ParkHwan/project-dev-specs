@@ -1,5 +1,7 @@
 # 🚀 Deployment & Release
 
+> **Last Updated**: [YYYY-MM-DD] | **Status**: Draft | **Owner**: [담당자]
+
 > 💡 **작성 가이드**: 안전하고 신뢰할 수 있는 배포 전략을 정의합니다.
 
 ---
