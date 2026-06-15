@@ -1,9 +1,14 @@
 # Task Completion Checklist
 
-When a task (refining a section, adding a feature, etc.) is completed, ensure the following:
+문서/구조 변경을 마칠 때 아래를 확인한다.
 
-1. **Markdown Validation**: Ensure the Markdown syntax is correct and renders properly.
-2. **Mermaid Validation**: Verify that all Mermaid diagrams are valid and render correctly in supported environments (e.g., GitHub, VS Code).
-3. **Consistency Check**: Ensure terminology and formatting are consistent throughout the document.
-4. **Placeholder Check**: Ensure all new placeholders follow the established convention `[TODO]` or `{예시}`.
-5. **Instructional Quality**: Ensure the "작성 가이드" (Writing Guide) for each section is clear and helpful.
+1. **SoT 준수**: 수정은 모듈형 `docs/`에서 했는가. `archive/`(monolith/EN)는 건드리지 않았는가.
+2. **번호 컨벤션**: 새 헤딩에 글로벌 섹션번호를 붙이지 않았는가(`grep -rnE '^#{2,6} [0-9]' docs` = 0).
+3. **링크 실재**: 추가/수정한 `](...md)` 링크가 모두 실제 파일로 해석되는가. 숫자 앵커(`#[0-9]`) 없는가.
+4. **양방향 참조**: 강결합 문서면 footer 상호링크를 맞췄는가.
+5. **플레이스홀더 게이트**: 새 플레이스홀더는 `[브래킷]`/`{예시}` 컨벤션을 따르는가(실프로젝트 채움 시 게이트로 검사).
+6. **메타데이터 헤더**: 신규 도메인 문서에 `Last Updated|Status|Owner` 헤더가 있는가.
+7. **스킬 그래프 정합**: 문서 추가 시 대응 스킬·`skill_graph`(yaml/md) 노드·엣지·실행순서를 갱신했는가(노드 수 = `skills/` 디렉터리 수).
+8. **Mermaid 유효성**: 다이어그램이 GitHub/VS Code에서 렌더되는가.
+9. **Git 동기화**: 의미 단위로 커밋·`push origin main` 후 `HEAD == origin/main` 확인.
+10. **serena 메모리**: 상태 변화가 있으면 `project_overview.md` 갱신.
