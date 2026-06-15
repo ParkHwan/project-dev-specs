@@ -36,8 +36,15 @@ repo 루트 직속 배치:
 ## 컨벤션 추가
 - 헤딩에 글로벌 섹션번호를 다시 붙이지 않는다(설명형 헤딩 유지). 문서 간 참조는 번호가 아니라 섹션명/파일 링크로 한다.
 
+## 에이전트 자율개발 운영 모델 (R&D, 반영 완료)
+- 구상: hermes-agent(NousResearch) 실행 + ralph loop 반복 + memsearch 기억으로, 명세를 입력으로 설계→개발→검증→테스트→배포를 **반자율** 수행, 사람 감독.
+- 3자 검토(나/Codex/Gemini) 수렴 결론: "완전 자율" 아닌 **객관 게이트 기반 반자율**.
+- 핵심 규칙: 완료는 CI/테스트로 객관판정(자기판단 금지)·테스트디렉터리 쓰기잠금(Locker), 생성자≠검증자(Codex 생성/Opus 적대검증/Gemini 문서검증, 역할로 고정·교체가능), 기억 2축(에피소드=memsearch 단일권위·post-merge 인덱싱·verified만 / 절차=hermes SKILL.md·PR승격), hermes 격리(샌드박스·노출금지·YOLO금지), ralph=제한 반복(tasks.json·max_iter·비용 킬스위치), prod=사람 승인·크레덴셜 미주입.
+- 반영 위치: 신규 `docs/10_agent_ops/operating_model.md`·`loop_and_memory_governance.md`, `memsearch_memory.md` 확장(status/outcome/post-merge/failure_memory/FTS5 OFF), `skill.md`=Hermes runner contract, security_spec/deployment_release 절, 스킬 2개+그래프 노드, 허브 매트릭스/Quick Nav, BUILD_SPEC 매핑.
+- 미해결 참고: hermes webhook/API는 RCE-class라 반드시 격리. 자가발전=절차 캐싱+검색+빠른 거절이지 모델 향상 아님.
+
 ## 남은 작업
-- 템플릿 정비(P0~P2 + 이관 + 비번호화 + 상호참조)는 **완료**. 이후는 실제 프로젝트에 템플릿을 채우는 단계(플레이스홀더 → 실제 값, Build-Ready 게이트 통과).
+- 템플릿 정비(P0~P2 + 이관 + 비번호화 + 상호참조 + 에이전트 운영 모델)는 **완료**. 이후는 실제 프로젝트에 템플릿을 채우는 단계(플레이스홀더 → 실제 값, Build-Ready 게이트 통과). 선택: hermes 실제 연동 PoC(샌드박스 Dockerfile, tasks.json 스키마, post-merge 인덱싱 훅).
 
 ## 컨벤션 / 주의
 - 문서는 한국어 우선. 수정은 항상 SoT(`docs/`)에서 → 필요 시 EN 동기화.
