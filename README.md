@@ -1,2 +1,2 @@
-# Project_Specification_Enhancement
-공통된 개발 명세서를 디테일하게 정의하여 사용하기 위한 작업
+# project-dev-specs
+프로젝트 개발 명세서 및 기술 문서 관리 Repository
