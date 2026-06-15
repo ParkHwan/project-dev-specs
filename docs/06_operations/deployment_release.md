@@ -126,7 +126,17 @@ flowchart LR
 
 ---
 
+## 자율 배포 정책 (Agent)
+
+에이전트 자율 실행 시 배포 경계(→ [에이전트 운영 모델](../10_agent_ops/operating_model.md)):
+
+- **dev/staging**: 자율 배포 + 스모크 테스트 자동 수행 허용.
+- **prod**: 🚫 에이전트 직접 배포 금지. CI/CD에 **Manual Approval Gate**를 명시 — 사람이 영향도·롤백 런북 검토 후 승인.
+- **prod 크레덴셜**: 에이전트 실행 환경에 주입하지 않는다. 에이전트는 prod용 PR/Release를 준비만 한다.
+- **롤백**: 자동 트리거(에러율/지연 임계)는 허용하며, 위 카나리/롤백 기준을 따른다.
+
 ## 🔗 관련 문서
+- [에이전트 운영 모델](../10_agent_ops/operating_model.md)
 - [관측성 및 모니터링 (Observability)](./observability.md)
 - [데이터 마이그레이션 전략 (Migration)](../03_data/migration_strategy.md)
 - [Agent Long-term Memory (memsearch)](../03_data/memsearch_memory.md)

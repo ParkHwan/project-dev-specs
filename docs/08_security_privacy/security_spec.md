@@ -123,7 +123,19 @@
 
 ---
 
+## 에이전트 실행 보안 (hermes)
+
+자율 에이전트(hermes)는 코드 실행기(RCE-class)이므로 격리·최소권한이 전제다(→ [에이전트 운영 모델](../10_agent_ops/operating_model.md)).
+
+- **격리 실행**: 로컬 OS 직접 실행 금지. Docker/Modal/Daytona 등 샌드박스에서 실행하고 **아웃바운드 네트워크를 통제**한다.
+- **노출 금지**: webhook/API 게이트웨이를 외부에 노출하지 않는다. gateway는 allowlist 기반.
+- **무승인(YOLO) 모드 금지**: 위험 명령은 승인 게이트를 거친다.
+- **시크릿 최소화**: 토큰 passthrough 최소화, prod 크레덴셜 미주입.
+- **테스트 디렉터리 쓰기 잠금**: 거짓 완료(테스트 조작) 방지(→ 루프·메모리 거버넌스).
+- **SSRF 보호**: 메타데이터 endpoint 차단·URL 검증(위 OWASP A10과 동일 기조).
+
 ## 🔗 관련 문서
+- [에이전트 운영 모델](../10_agent_ops/operating_model.md)
 - [API 가이드라인](../04_api/api_guidelines.md)
 - [데이터 라이프사이클](../03_data/data_model.md#데이터-라이프사이클)
 - [Agent Long-term Memory (memsearch)](../03_data/memsearch_memory.md)

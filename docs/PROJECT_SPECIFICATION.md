@@ -49,8 +49,10 @@
 | Cost / FinOps | ✅ | ✅ | ✅ | ✅ | ⚪ | [06_operations/cost_management.md](./06_operations/cost_management.md) |
 | IaC | ✅ | ✅ | ✅ | ✅ | ⚪ | [06_operations/infrastructure_as_code.md](./06_operations/infrastructure_as_code.md) |
 | Data Pipeline | ⚪ | ⚪ | ✅ | ✅ | ⚪ | [03_data/pipeline_spec.md](./03_data/pipeline_spec.md) |
+| Agent Operating Model | ⚪ | ⚪ | ⚪ | ⚪ | ⚪ | [10_agent_ops/operating_model.md](./10_agent_ops/operating_model.md) |
+| Loop & Memory Governance | ⚪ | ⚪ | ⚪ | ⚪ | ⚪ | [10_agent_ops/loop_and_memory_governance.md](./10_agent_ops/loop_and_memory_governance.md) |
 
-✅ 필수 | ⚪ 선택/해당시
+✅ 필수 | ⚪ 선택/해당시 (Agent 항목은 에이전트 자율 개발 도입 시 필수)
 
 ---
 
@@ -130,6 +132,10 @@
 
 **09 UX**
 - [UI/UX 및 접근성](./09_ux/ui_spec.md)
+
+**10 에이전트 운영**
+- [에이전트 운영 모델](./10_agent_ops/operating_model.md)
+- [루프·메모리 거버넌스](./10_agent_ops/loop_and_memory_governance.md)
 
 **99 부록**
 - [부록 및 결정 기록 (ADR)](./99_appendix/references.md)

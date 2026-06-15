@@ -52,6 +52,7 @@
 - 보안/프라이버시: `docs/08_security_privacy/security_spec.md`
 - UI/UX·접근성: `docs/09_ux/ui_spec.md`
 - 부록/ADR: `docs/99_appendix/references.md`, `.../adr/`
+- 에이전트 운영(반자율 실행): `docs/10_agent_ops/*.md`
 
 ---
 

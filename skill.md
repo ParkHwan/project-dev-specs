@@ -1,14 +1,27 @@
 ---
 name: build-ready-project-executor
-description: Use this skill when starting implementation from Development_Project_Guide specs. It validates build readiness, resolves spec gaps first, then executes development in requirement-first order with test evidence.
+description: Hermes runner contract. Use when executing implementation from project-dev-specs. Validates build readiness, resolves spec gaps first, then executes per-TASK under the agent operating model (ralph-bounded retries, memsearch memory, objective-gate completion) with test evidence.
 ---
 
-# Build-Ready Project Executor Skill
+# Build-Ready Project Executor Skill (Hermes Runner Contract)
+
+> 이 스킬은 단순 executor가 아니라 **hermes 실행자가 따르는 runner contract**다.
+> 반복은 ralph 정책으로 bound되고, 완료는 객관 게이트로 판정하며, 기억은 memsearch가 공급한다.
+> 운영 모델: [docs/10_agent_ops/operating_model.md](docs/10_agent_ops/operating_model.md),
+> 루프/메모리/완료 규칙: [docs/10_agent_ops/loop_and_memory_governance.md](docs/10_agent_ops/loop_and_memory_governance.md).
 
 ## Trigger
 
 - 사용자가 "이 문서를 기반으로 개발 시작", "스펙 기반 구현", "에이전트로 개발 진행"을 요청할 때 사용한다.
 - 기준 문서는 `BUILD_SPEC_TEMPLATE.md`와 `docs`이다.
+
+## Runner 규약 (요약)
+
+- **단일 TASK 단위 실행**: ralph가 `tasks.json`에서 한 TASK를 주입하면 "검색→변경→테스트→기록"까지만 수행한다.
+- **완료는 자기판단 금지**: CI·테스트·contract·smoke 통과로만 done(테스트 디렉터리 쓰기 잠금 준수).
+- **생성자≠검증자**: 코드 생성과 적대적 교차검증은 다른 모델이 맡는다.
+- **검증된 것만 기억**: post-merge 시 memsearch 인덱싱, 미검증 추론 저장 금지.
+- **prod 차단**: prod 배포는 사람 승인 게이트, prod 크레덴셜 미주입.
 
 ## Inputs
 

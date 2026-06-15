@@ -28,6 +28,8 @@ nodes:
   - roadmap
   - glossary
   - appendix-references
+  - agent-operating-model
+  - agent-loop-memory-governance
 edges:
   - from: build-spec-gate
     to: requirements-problem-goals
@@ -111,3 +113,9 @@ edges:
     to: glossary
   - from: glossary
     to: appendix-references
+  - from: operations-deployment-release
+    to: agent-operating-model
+  - from: agent-memory-memsearch
+    to: agent-operating-model
+  - from: agent-operating-model
+    to: agent-loop-memory-governance
