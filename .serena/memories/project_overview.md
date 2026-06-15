@@ -28,9 +28,10 @@ repo 루트 직속 배치:
 - README 보강: SoT/레이아웃/경로 규약/Build-Ready 사용법/스킬 실행순서/문서 색인 추가.
 - 메타데이터 헤더: 도메인 문서 25개 H1 아래 `Last Updated | Status | Owner` 추가(허브·ADR 템플릿 제외).
 - endpoints.md 확장: 리소스별 양식+예시(Users), 공통규약(페이지네이션/멱등성), OpenAPI 동반문서 위치 명시. 섹션 8 번호 정렬(guidelines 8.1~8.6 / endpoints 8.7~8.9).
+- security_spec 9.1 실제화: 9.1.1 OWASP Top10(2021) 대응표, 9.1.2 SDL 단계 체크, 9.1.3 규제(PIPA/GDPR)+DPIA. 9.2~9.8 유지.
 
 ## 남은 작업 (다음 세션 우선순위)
-- **[콘텐츠] `security_spec` 체크리스트 실제화(OWASP/SDL/규제), resilience 패턴(재시도/서킷브레이커/멱등성)**.
+- **[콘텐츠] resilience 패턴(재시도/서킷브레이커/멱등성) — system_design 또는 api_guidelines에 추가**.
 - **[정합] 양방향 상호참조 보완, 섹션번호 근본 비번호화(선택)**.
 
 ## 컨벤션 / 주의
