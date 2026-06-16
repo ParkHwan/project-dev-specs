@@ -120,6 +120,7 @@
 에이전트 운영([../10_agent_ops/loop_and_memory_governance.md](../10_agent_ops/loop_and_memory_governance.md))과 결속한다.
 
 - **에피소드 기억 단일 권위**: 본 memsearch가 결정/태스크/실패의 단일 영속 저장소다. hermes 네이티브 FTS5·MEMORY.md의 영속 에피소드 저장은 비활성화하고, 진행 중 세션 맥락은 휘발(RAM)로만 둔다.
+- **빌드↔운영 학습 다리**: 본 저장소는 Build/Operate 두 모드가 공유하는 단일 에피소드 권위다. 빌드에서 검증된 지식이 운영 단계 에이전트로 회수되어 자가습득이 연속된다(→ [operating_model 빌드/운영 모드](../10_agent_ops/operating_model.md)).
 - **검증 시점 = post-merge**: 인덱싱은 main/develop에 squash-merge된 산출물 + ADR에 대해서만 post-merge 훅에서 수행한다(테스트 통과만으로 자동 저장하지 않는다).
 - **자동 저장 금지**: 미검증 추론·임시 우회 코드는 저장하지 않는다.
 - **failure_memory**: 원시 실패 로그가 아니라 검증된 사후분석(증상→원인→해결)만 `outcome=failure`로 저장한다.
