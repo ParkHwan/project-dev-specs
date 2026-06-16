@@ -45,10 +45,12 @@ repo 루트 직속 배치:
 - 빌드/운영 모드(사용자 합의·반영됨): ralph는 단계가 아니라 hermes 위 "반복 강도 노브". Build(그린필드·대형기능=ralph 세게, 기존repo는 patch mode) / Operate(트러블슈팅·소규모=hermes 대화형+스킬, ralph 약하게). 경계는 phase가 아니라 작업크기·prod영향. memsearch가 두 모드 공유 학습 다리. prod 영향 변경은 모드 불문 게이트+승인 유지. 자동화는 cmux 수동 오케스트레이션 → ralph 점진 자동화.
 - hermes 모델 설정은 별도(`~/.hermes/config.yaml`+`.env`), 명세 읽기로 자동설정 안 됨. 서브에이전트 역할별 모델 오버라이드(생성자≠검증자)는 문서 미확정 → ralph 래퍼에서 보장 권장(PoC 검증 대상).
 
-## PoC (hermes 연동 실험) — 스캐폴드 추가됨
-- 위치: `poc/hermes-agent/` (Dockerfile·config.example.yaml·tasks.schema.json+example·hooks/post-merge·EXPERIMENT_role_model_separation.md).
-- 핵심 실험(미실행): 서브에이전트 역할별 모델 분리(Generator≠Verifier)가 hermes 단독 설정으로 되는지 실측. FAIL 시 ralph 래퍼/2-인스턴스/OpenRouter 대안. 결과 나오면 operating_model.md에 확정 반영.
-- 미확정 플레이스홀더(`# 확인 필요`): hermes 설치 명령, memsearch 인덱싱 CLI, 서브에이전트 모델 오버라이드 키.
+## PoC (hermes 연동 실험) — 실행 완료, 결론 도출
+- 위치: `poc/hermes-agent/` (+ `ralph_loop.sh` 추가). hermes는 컨테이너 격리 실행 확인.
+- **실험 결과(2026-06-16)**: 서브에이전트 역할별 모델 분리는 **hermes 단독 불가(FAIL)**. hermes 서브에이전트(delegate_task)는 메인 모델(Claude/OpenRouter) 상속(OpenAI 대시보드 무호출로 실측), "Codex 사용"은 외부 codex CLI 셸아웃이라 별도 인증 필요+시크릿 마스킹에 막힘. `agent/subagent` 명령·서브에이전트 모델 키 없음.
+- **채택**: per-invocation 오버라이드(`hermes -z "..." -m <모델> --provider openrouter`)는 지원 → **ralph 래퍼(`ralph_loop.sh`)가 역할별로 호출**해 Generator≠Verifier 보장. 모델은 전부 OpenRouter 경유(hermes OpenAI 키 슬롯은 STT/TTS용이라 chat은 OpenRouter). operating_model.md 토폴로지에 확정 반영.
+- hermes CLI 사실: 멀티프로바이더(no lock-in), `-m/--provider/-z`, `hermes memory`(외부 메모리 provider=memsearch 연결점 후보), backend=local(컨테이너 내), 시크릿 마스킹·Dangerous Command 승인 게이트 동작.
+- ⚠️ 보안 사고: 실험 중 실제 OpenAI 키를 채팅에 평문 입력 + `poc/hermes-agent/.env`(gitignore됨)에 실제 OpenAI/OpenRouter 키 존재. 두 키 모두 노출 → **반드시 rotate**. 또 컨테이너가 repo에 `.codex/`·`codex-install/`·`tmp/`를 생성해 `git add -A`가 쓸어담아 push가 시크릿스캐닝에 거부된 적 있음 → 잔여물 제거+gitignore로 해결. 교훈: 컨테이너 마운트는 repo 루트 말고 하위 작업폴더로, 커밋은 `git add -A` 대신 명시 경로.
 
 ## 남은 작업
 - 템플릿 정비(P0~P2 + 이관 + 비번호화 + 상호참조 + 에이전트 운영 모델 + 빌드/운영 모드)는 **완료**.
