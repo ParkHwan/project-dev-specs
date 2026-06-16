@@ -13,3 +13,9 @@
 
 # PoC secrets
 poc/**/.env
+
+# hermes/codex 실험 잔여물(컨테이너가 repo에 생성)
+.codex/
+codex-install/
+tmp/
+.hermes/

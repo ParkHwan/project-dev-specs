@@ -23,22 +23,17 @@ auxiliary:
     model: "anthropic/claude-haiku-4"
 
 # ──────────────────────────────────────────────────────────────────────────
-# ⚠️ 핵심 미확정: 서브에이전트 역할별 모델/프로바이더 분리
-# 목표 매핑:
-#   Code Generator   = Codex  → provider: openai,  key: OPENAI_API_KEY
-#   Doc/Arch Reviewer = Gemini → provider: google,  key: GEMINI_API_KEY
-#   Verifier         = 메인 Claude(OpenRouter)  ← Generator(Codex)와 다른 모델 보장
+# 실험 결과(2026-06-16): 서브에이전트 역할별 모델 분리는 hermes 단독으로 불가.
+#  - hermes 서브에이전트(delegate_task)는 메인 모델(Claude/OpenRouter)을 상속한다.
+#    (실측: OpenAI 대시보드 무호출, OpenRouter에만 호출) → config의 subagents 모델 지정 없음.
+#  - hermes의 "Codex 사용"은 모델 라우팅이 아니라 외부 codex CLI 셸아웃(tool-use)이라
+#    Codex 자체 인증이 필요하고, 시크릿 마스킹/승인 게이트에 막힌다.
+# ⇒ 결론: Generator≠Verifier는 ralph 래퍼(ralph_loop.sh)에서 per-invocation으로 보장한다.
+#         ralph가 역할마다 `hermes -z "<프롬프트>" -m <모델> --provider openrouter` 로 호출.
 #
-# 아래 subagents 블록의 키/지원 여부는 공식 문서에 미확정 → EXPERIMENT 문서로 실측.
-# (서브에이전트가 메인 모델을 상속하면 분리 실패 → ralph 래퍼 대안)  # 확인 필요
+# 모델은 모두 OpenRouter 경유(이 PoC):  # 확인 필요: 정확한 OpenRouter 모델 id
+#   Generator = openai/gpt-5-codex (anthropic/claude-opus-4-8 와 다른 모델)
+#   Verifier  = anthropic/claude-opus-4-8 (= 메인)
+#   Doc Review = google/gemini-2.5-pro
+# 참고: hermes의 OpenAI 키 슬롯은 STT/TTS용이라 GPT/Codex chat 생성엔 OpenRouter를 쓴다.
 # ──────────────────────────────────────────────────────────────────────────
-# subagents:
-#   code_generator:
-#     provider: "openai"
-#     model: "gpt-5.3-codex"        # 확인 필요: 실제 모델 id
-#   doc_reviewer:
-#     provider: "google"            # 확인 필요: hermes provider 식별자
-#     model: "gemini-2.5-pro"       # 확인 필요: 실제 모델 id
-#
-# 대안: Codex/Gemini도 OpenRouter 단일 키로 호출하면(openai/..., google/...)
-#       키 관리는 단순해지나, 사용자 요구(서브는 각자 직접 키)와는 다르다.

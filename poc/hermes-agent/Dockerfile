@@ -4,7 +4,7 @@ FROM python:3.12-slim
 
 # 기본 도구 (git: post-merge 훅·patch mode, 빌드 의존성 최소)
 RUN apt-get update \
- && apt-get install -y --no-install-recommends git ca-certificates curl \
+ && apt-get install -y --no-install-recommends git ca-certificates curl jq \
  && rm -rf /var/lib/apt/lists/*
 
 # 비루트 사용자

@@ -35,14 +35,16 @@
 2. **2-인스턴스**: generator용 hermes(주 모델=Codex) + verifier용 hermes(주 모델=Opus)를 ralph가 조율.
 3. **OpenRouter 호출별 전환**: 프레임워크가 호출 단위 모델 지정을 허용하면 단일 키로 전환.
 
-## 결과 기록 (실험 후 채움)
+## 결과 기록 (2026-06-16 실측)
 | 항목 | 결과 |
 |------|------|
-| hermes 버전 | [확인] |
-| 서브에이전트 기본 모델 상속? | [예/아니오] |
-| 설정 오버라이드 키 존재? | [키 이름 / 없음] |
-| generator=Codex, verifier=Opus 분리 확인? | [PASS/FAIL] |
-| 채택 경로 | [설정 / ralph 래퍼 / 2-인스턴스 / OpenRouter] |
-| 비고 | [ ] |
+| 서브에이전트 명령/설정 키 | 없음 (`hermes`에 agent/subagent 명령 없음, `config show`에 subagent 모델 키 없음) |
+| 서브에이전트 기본 모델 상속? | **예** — delegate_task 서브가 메인(Claude/OpenRouter)에서 실행됨 |
+| 분리 관측(대시보드) | OpenRouter에만 호출 / **OpenAI 대시보드 무호출** = LLM 분리 안 됨 |
+| hermes의 "Codex 사용" 방식 | 모델 라우팅 아님 → 외부 `codex` CLI 셸아웃(tool-use), Codex 자체 인증 필요(401 실패) |
+| generator≠verifier 분리(hermes 단독) | **FAIL** |
+| per-invocation 오버라이드(`-m/--provider/-z`) | **지원** → 역할별 호출 분리 가능 |
+| 채택 경로 | **ralph 래퍼**(`ralph_loop.sh`), 모델은 모두 **OpenRouter** 경유 |
+| 비고 | hermes OpenAI 키 슬롯은 STT/TTS용 → GPT/Codex chat은 OpenRouter로. 시크릿 마스킹/승인 게이트가 키 셸 전파를 차단(보안 정상 작동). |
 
-> 결과가 나오면 `docs/10_agent_ops/operating_model.md`의 멀티에이전트 토폴로지 절에 "역할-모델 분리 실현 방식"으로 한 줄 확정 반영한다(현재는 미확정으로 남겨둠).
+**확정 결론**: hermes 내부 서브에이전트로는 Generator≠Verifier를 만들 수 없다. ralph가 역할마다 `hermes -z -m <모델> --provider openrouter`로 호출하여 LLM 레벨 분리를 보장한다. → `operating_model.md` 토폴로지 절에 반영함.

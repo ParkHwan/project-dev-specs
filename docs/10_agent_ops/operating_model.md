@@ -42,6 +42,8 @@
 | Code Verifier (적대적) | 생성 코드의 결함·보안·계약 위반을 **반증** | Opus(생성자와 다른 모델) | ✅ |
 | Doc/Arch Reviewer | 문서·아키텍처·ADR 교차검증 | Gemini | ✅ |
 
+> **역할-모델 분리 실현 방식 (실측 확정, 2026-06-16)**: hermes 내부 서브에이전트는 메인 모델을 상속하므로 hermes 단독으로는 Generator≠Verifier가 안 된다. → **ralph 외부 래퍼가 역할마다 `hermes -z "<프롬프트>" -m <모델> --provider openrouter`로 호출**해 LLM 레벨 분리를 보장한다. 모델은 모두 OpenRouter 경유(예: Generator=`openai/gpt-5-codex`, Verifier=`anthropic/claude-opus-4-8`). 구현·근거: [PoC ralph_loop.sh / EXPERIMENT](../../poc/hermes-agent/EXPERIMENT_role_model_separation.md).
+
 ### Generator–Critic 흐름과 중재
 1. Generator가 TASK 코드 생성.
 2. **하드 게이트**(CI·테스트·lint) 통과 후에만 검증 진행(미통과 코드에 리뷰 낭비 금지).
