@@ -42,6 +42,8 @@ repo 루트 직속 배치:
 - 핵심 규칙: 완료는 CI/테스트로 객관판정(자기판단 금지)·테스트디렉터리 쓰기잠금(Locker), 생성자≠검증자(Codex 생성/Opus 적대검증/Gemini 문서검증, 역할로 고정·교체가능), 기억 2축(에피소드=memsearch 단일권위·post-merge 인덱싱·verified만 / 절차=hermes SKILL.md·PR승격), hermes 격리(샌드박스·노출금지·YOLO금지), ralph=제한 반복(tasks.json·max_iter·비용 킬스위치), prod=사람 승인·크레덴셜 미주입.
 - 반영 위치: 신규 `docs/10_agent_ops/operating_model.md`·`loop_and_memory_governance.md`, `memsearch_memory.md` 확장(status/outcome/post-merge/failure_memory/FTS5 OFF), `skill.md`=Hermes runner contract, security_spec/deployment_release 절, 스킬 2개+그래프 노드, 허브 매트릭스/Quick Nav, BUILD_SPEC 매핑.
 - 미해결 참고: hermes webhook/API는 RCE-class라 반드시 격리. 자가발전=절차 캐싱+검색+빠른 거절이지 모델 향상 아님.
+- 빌드/운영 모드(사용자 합의·반영됨): ralph는 단계가 아니라 hermes 위 "반복 강도 노브". Build(그린필드·대형기능=ralph 세게, 기존repo는 patch mode) / Operate(트러블슈팅·소규모=hermes 대화형+스킬, ralph 약하게). 경계는 phase가 아니라 작업크기·prod영향. memsearch가 두 모드 공유 학습 다리. prod 영향 변경은 모드 불문 게이트+승인 유지. 자동화는 cmux 수동 오케스트레이션 → ralph 점진 자동화.
+- hermes 모델 설정은 별도(`~/.hermes/config.yaml`+`.env`), 명세 읽기로 자동설정 안 됨. 서브에이전트 역할별 모델 오버라이드(생성자≠검증자)는 문서 미확정 → ralph 래퍼에서 보장 권장(PoC 검증 대상).
 
 ## 남은 작업
 - 템플릿 정비(P0~P2 + 이관 + 비번호화 + 상호참조 + 에이전트 운영 모델)는 **완료**. 이후는 실제 프로젝트에 템플릿을 채우는 단계(플레이스홀더 → 실제 값, Build-Ready 게이트 통과). 선택: hermes 실제 연동 PoC(샌드박스 Dockerfile, tasks.json 스키마, post-merge 인덱싱 훅).
