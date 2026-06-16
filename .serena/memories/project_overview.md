@@ -52,6 +52,7 @@ repo 루트 직속 배치:
 - **end-to-end 실증(2026-06-16 PASS)**: `ralph_loop.sh tasks.smoke.json` 1회 — 생성(gpt-5.3-codex)→게이트 PASS(check.py)→적대검증(claude-opus-4-8)→VERDICT APPROVE→success. OpenRouter에 두 모델 분리 호출 확인. oneshot 파일쓰기·VERDICT 파싱 동작 확인. 확정 모델 id: Generator=openai/gpt-5.3-codex, Verifier=anthropic/claude-opus-4-8, DocReviewer=google/gemini-3.5-flash. ralph는 jq 제거하고 python3 파싱. 컨테이너는 --read-only라 ~/.hermes 쓰기 마운트 필요.
 - hermes CLI 사실: 멀티프로바이더(no lock-in), `-m/--provider/-z`, `hermes memory`(외부 메모리 provider=memsearch 연결점 후보), backend=local(컨테이너 내), 시크릿 마스킹·Dangerous Command 승인 게이트 동작.
 - **비용 모델(중요)**: 구독(Claude/ChatGPT/Gemini) ≠ API. hermes는 API라 과금. 사용자는 보유 구독으로 추가 과금 0 목표 → **빌드는 구독 CLI(codex/claude/gemini 비대화)로, 운영 무인 자동화만 hermes(API)**. ralph_loop.sh를 runner 플러그형으로 일반화(`model_roles.*.runner`: hermes/codex/claude/gemini, 생략 시 hermes). 빌드/운영 모드와 cost_management.md에 반영. 주의: 구독 CLI 루프는 rate limit·ToS 확인.
+- **구독 모드 실증(2026-06-16 PASS)**: `ralph_loop.sh tasks.smoke.sub.json`(codex 생성/claude 검증)을 호스트에서 실행 → success, 추가 API 과금 0. 확인: 구독 CLI는 계정 기본 모델 사용(codex=gpt-5.5, tasks.json model은 의도 기록용·`-m` 무시). codex exec 기본 read-only라 생성 역할은 `--sandbox workspace-write` 필요(반영함). 그 1회는 calc.py 잔존본이라 통과 → 신규 생성은 calc.py 삭제 후 재검증 권장.
 - ⚠️ 보안 사고: 실험 중 실제 OpenAI 키를 채팅에 평문 입력 + `poc/hermes-agent/.env`(gitignore됨)에 실제 OpenAI/OpenRouter 키 존재. 두 키 모두 노출 → **반드시 rotate**. 또 컨테이너가 repo에 `.codex/`·`codex-install/`·`tmp/`를 생성해 `git add -A`가 쓸어담아 push가 시크릿스캐닝에 거부된 적 있음 → 잔여물 제거+gitignore로 해결. 교훈: 컨테이너 마운트는 repo 루트 말고 하위 작업폴더로, 커밋은 `git add -A` 대신 명시 경로.
 
 ## 남은 작업
