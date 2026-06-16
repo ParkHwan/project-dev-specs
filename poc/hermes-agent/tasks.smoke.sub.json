@@ -1,0 +1,30 @@
+{
+  "version": "0.1.0",
+  "project_id": "ralph-smoke-sub",
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "title": "두 정수를 더하는 add(a, b) 함수를 poc/hermes-agent/smoke/calc.py 에 작성하라. 표준 라이브러리만 사용.",
+      "mode": "build",
+      "patch_mode": true,
+      "status": "todo",
+      "acceptance_criteria": [
+        "calc.py에 add(a, b) 함수 존재",
+        "add(2,3)==5, add(-1,1)==0, add(0,0)==0"
+      ],
+      "gate": {
+        "test_command": "python3 poc/hermes-agent/smoke/check.py"
+      },
+      "loop": {
+        "max_iterations": 3,
+        "cost_budget_usd": 0
+      },
+      "model_roles": {
+        "generator": { "runner": "codex", "provider": "openai", "model": "gpt-5.3-codex" },
+        "verifier": { "runner": "claude", "provider": "anthropic", "model": "claude-opus-4-8" }
+      },
+      "human_gate": false,
+      "memory": { "index_on": "post_merge", "status": "unverified" }
+    }
+  ]
+}
