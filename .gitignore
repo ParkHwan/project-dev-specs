@@ -19,3 +19,6 @@ poc/**/.env
 codex-install/
 tmp/
 .hermes/
+
+# ralph 스모크 생성물(에이전트가 만듦)
+poc/hermes-agent/smoke/calc.py
