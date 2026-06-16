@@ -20,3 +20,10 @@
 
 ## Diagram
 * 미리보기: [Mermaid Live](https://mermaid.live/) 또는 GitHub 렌더.
+
+## PoC / 에이전트 루프 (poc/hermes-agent/)
+* hermes 격리 실행(API 모드): `docker build -t hermes-sandbox poc/hermes-agent` 후 README의 run(루트FS read-only + `~/.hermes` 쓰기 마운트 + tests 읽기전용).
+* ralph 루프(repo 루트에서): `./poc/hermes-agent/ralph_loop.sh poc/hermes-agent/tasks.smoke.json`
+  - 구독 모드(추가 과금 0, 호스트에서): `./poc/hermes-agent/ralph_loop.sh poc/hermes-agent/tasks.smoke.sub.json`
+* 모델 라우팅 확인: `hermes -z "Reply PONG" -m <모델> --provider openrouter` → OpenRouter 대시보드 usage.
+* tasks.json은 `tasks.schema.json` 따름. runner=hermes/codex/claude/gemini, generator≠verifier 필수.

@@ -12,3 +12,4 @@
 8. **Mermaid 유효성**: 다이어그램이 GitHub/VS Code에서 렌더되는가.
 9. **Git 동기화**: 의미 단위로 커밋·`push origin main` 후 `HEAD == origin/main` 확인.
 10. **serena 메모리**: 상태 변화가 있으면 `project_overview.md` 갱신.
+11. **커밋 위생**: `git add -A` 금지 → **명시 경로**로만 스테이징(컨테이너 잔여물 `.codex/` 등 혼입 방지). 커밋 전 `git diff --cached | grep -E 'sk-proj-|sk-or-v1|sk-ant-'`로 시크릿 점검. push는 GitHub 시크릿스캐닝 통과 필요.
