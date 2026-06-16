@@ -34,18 +34,27 @@
 # 1) 이미지 빌드
 docker build -t hermes-sandbox poc/hermes-agent
 
-# 2) 실행 — 아웃바운드 통제 + 테스트 디렉터리 읽기전용 마운트(거짓완료 방지)
+# 2) 호스트에 hermes 홈 준비 (config + 키). ~/.hermes 는 쓰기 가능해야 한다.
+mkdir -p ~/hermes-poc
+cp poc/hermes-agent/config.example.yaml ~/hermes-poc/config.yaml
+printf 'OPENROUTER_API_KEY=...\nOPENAI_API_KEY=...\nGEMINI_API_KEY=...\n' > ~/hermes-poc/.env
+chmod 600 ~/hermes-poc/.env
+
+# 3) 실행 — 루트FS는 읽기전용, 단 ~/.hermes 와 /workspace 는 쓰기 가능 볼륨
 docker run --rm -it \
   --name hermes-sandbox \
   --cap-drop ALL \
   --security-opt no-new-privileges \
   --read-only --tmpfs /tmp \
   -v "$PWD":/workspace:rw \
-  -v "$PWD/tests":/workspace/tests:ro \           # 테스트 디렉터리 쓰기 잠금(Locker)
-  --env-file poc/hermes-agent/.env \              # API 키(.env는 커밋 금지)
+  -v "$PWD/tests":/workspace/tests:ro \              # 테스트 디렉터리 쓰기 잠금(Locker)
+  -v "$HOME/hermes-poc":/home/agent/.hermes:rw \     # config/키/스킬/메모리 쓰기 공간(--read-only 보완)
   # --network 통제: 사내 프록시/allowlist만 허용 (예: 전용 docker network)
   hermes-sandbox
 ```
+
+> ⚠️ `--read-only`만 두고 `~/.hermes`를 쓰기 볼륨으로 마운트하지 않으면, hermes가 config.yaml을 생성할 때 `Read-only file system` 오류가 난다. 위처럼 `~/.hermes`를 반드시 쓰기 가능 볼륨/`--tmpfs`로 준다.
+> 휘발 임시로 쓰려면 마운트 대신 `--tmpfs /home/agent/.hermes:uid=10001,mode=0700` 후 컨테이너 안에서 config/.env 생성.
 
 > 🔒 prod 크레덴셜은 이 컨테이너에 **주입하지 않는다**. webhook/API 게이트웨이는 외부 노출 금지.
 

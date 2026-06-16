@@ -13,7 +13,7 @@
 
 # 메인 = Claude via OpenRouter (OpenRouter 모델 id 형식: "<provider>/<model>")
 model:
-  default: "anthropic/claude-opus-4"
+  default: "anthropic/claude-opus-4-8"
   provider: "openrouter"
 
 # 보조 작업(요약/압축 등)도 OpenRouter로 저비용 모델 사용
