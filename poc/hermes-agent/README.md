@@ -21,6 +21,13 @@
 3. **완료 게이트 결속** — `tasks.json`의 gate 명령(CI/테스트)으로 완료가 객관 판정되는가.
 4. **메모리 다리** — post-merge 훅으로 검증 산출물만 memsearch에 들어가는가.
 
+## 모델 라우팅 / 키 구성
+
+- **메인** = Claude via **OpenRouter** (`OPENROUTER_API_KEY`) — Orchestrator + Code Verifier
+- **서브** = Codex (`OPENAI_API_KEY`) = Generator / Gemini (`GEMINI_API_KEY`) = Doc·Arch Reviewer
+- Anthropic 직접 키는 쓰지 않는다. `~/.hermes/.env`에 위 3개 키를 둔다(커밋 금지).
+- ⚠️ 서브에이전트별 모델 분리가 hermes 단독으로 되는지는 미확정 → `EXPERIMENT_role_model_separation.md`로 실측.
+
 ## 빠른 시작 (격리 실행 예시)
 
 ```bash

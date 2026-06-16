@@ -9,8 +9,13 @@
 - **H1(대립)**: hermes 설정(서브에이전트/aux 슬롯/스킬 단위 모델 지정 등)으로 서브에이전트에 다른 모델을 배정할 수 있다.
 
 ## 준비
-1. `~/.hermes/.env`에 최소 2개 프로바이더 키 (예: `ANTHROPIC_API_KEY` + `OPENROUTER_API_KEY`).
-2. `config.example.yaml`을 `~/.hermes/config.yaml`로 복사. 주 모델 = Claude(anthropic).
+1. `~/.hermes/.env`에 3개 키:
+   - `OPENROUTER_API_KEY` — 메인 Claude (OpenRouter 경유)
+   - `OPENAI_API_KEY` — 서브 Codex (Generator)
+   - `GEMINI_API_KEY` — 서브 Gemini (Doc/Arch Reviewer)  # 확인 필요: 실제 키 이름
+2. `config.example.yaml`을 `~/.hermes/config.yaml`로 복사. 주 모델 = `anthropic/claude-opus-4`, provider=`openrouter`.
+
+목표 매핑: Generator=Codex(OpenAI) · Verifier=Claude(OpenRouter, 메인) · Doc Reviewer=Gemini(Google).
 3. 관측 수단 확보(아래 중 하나):
    - 프로바이더 대시보드(OpenRouter/Anthropic console)에서 **실제 호출된 모델** 로그 확인.
    - 또는 에이전트/서브에이전트에게 "현재 응답 모델 ID를 보고하라" 프롬프트(자기보고는 보조 근거).
