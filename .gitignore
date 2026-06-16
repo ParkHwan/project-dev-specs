@@ -10,3 +10,6 @@
 # Serena 로컬 전용/캐시 (.serena/memories는 추적함)
 .serena/cache/
 .serena/project.local.yml
+
+# PoC secrets
+poc/**/.env

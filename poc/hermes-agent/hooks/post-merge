@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+# post-merge 훅 — main/develop 머지 시 "검증된 산출물"만 memsearch에 인덱싱한다.
+# 설치: cp poc/hermes-agent/hooks/post-merge .git/hooks/post-merge && chmod +x .git/hooks/post-merge
+#
+# 원칙(루프·메모리 거버넌스):
+#  - 검증 시점 = post-merge (테스트 통과만으로 자동 저장하지 않음)
+#  - 인덱싱 대상 = main/develop에 머지된 산출물 + ADR
+#  - status=verified, outcome=success 로 태깅
+#  - 원시 세션 로그/미검증 추론은 저장하지 않음
+set -Eeuo pipefail
+
+branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo '')"
+case "$branch" in
+  main|develop) ;;
+  *) exit 0 ;;   # 보호 브랜치 외에는 인덱싱하지 않음
+esac
+
+# 이번 머지로 들어온 변경 파일 (직전 상태 ORIG_HEAD..HEAD)
+range="ORIG_HEAD..HEAD"
+git rev-parse -q --verify ORIG_HEAD >/dev/null 2>&1 || exit 0
+changed="$(git diff --name-only "$range" -- 'docs/**' 'docs/**/adr/**' 2>/dev/null || true)"
+[ -n "$changed" ] || exit 0
+
+inbox=".memsearch/inbox"
+mkdir -p "$inbox"
+ts="$(date -u +%Y%m%dT%H%M%SZ)"
+note="$inbox/merge-${ts}.md"
+
+{
+  echo "---"
+  echo "memory_type: memory_task"
+  echo "status: verified"
+  echo "outcome: success"
+  echo "branch: $branch"
+  echo "merge_commit: $(git rev-parse HEAD)"
+  echo "indexed_at: $ts"
+  echo "---"
+  echo
+  echo "## Merged artifacts ($branch)"
+  echo "$changed" | sed 's/^/- /'
+  echo
+  echo "## Commit summaries"
+  git log "$range" --no-merges --pretty='- %s' 2>/dev/null || true
+} > "$note"
+
+echo "[post-merge] memory note 생성: $note"
+
+# 확인 필요: 실제 memsearch 인덱싱 명령으로 교체.
+# memsearch는 Markdown을 source-of-truth로 두고 Milvus를 shadow index로 쓴다(zilliztech).
+# 예) memsearch index --source "$note" --namespace "$(basename "$PWD")"
+if command -v memsearch >/dev/null 2>&1; then
+  memsearch index --source "$note" --namespace "$(basename "$PWD")" || \
+    echo "[post-merge][WARN] memsearch 인덱싱 실패 — 명령/옵션 확인 필요"
+else
+  echo "[post-merge] memsearch CLI 미설치 — note만 적재. 인덱싱 명령 연결 필요(# 확인 필요)"
+fi

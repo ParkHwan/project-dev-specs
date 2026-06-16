@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/ParkHwan/project-dev-specs/poc/hermes-agent/tasks.schema.json",
+  "title": "Ralph Loop Task State",
+  "description": "ralph 외부 반복 정책이 읽고/쓰는 TASK 상태 파일. 완료 게이트·역할모델·loop 정책을 인코딩한다. 불변 규칙: model_roles.generator.model != model_roles.verifier.model (런타임에서 강제).",
+  "type": "object",
+  "required": ["version", "project_id", "tasks"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "type": "string" },
+    "project_id": { "type": "string" },
+    "tasks": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/task" }
+    }
+  },
+  "$defs": {
+    "task": {
+      "type": "object",
+      "required": ["id", "title", "mode", "status", "acceptance_criteria", "gate", "loop"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^TASK-[0-9]+$" },
+        "title": { "type": "string" },
+        "mode": { "enum": ["build", "operate"], "description": "build=그린필드/대형기능, operate=운영/소규모" },
+        "patch_mode": { "type": "boolean", "default": true, "description": "기존 코드베이스는 true(전면 반복 금지)" },
+        "status": { "enum": ["todo", "in_progress", "blocked", "done", "escalated"] },
+        "depends_on": { "type": "array", "items": { "type": "string" } },
+        "acceptance_criteria": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+        "gate": {
+          "type": "object",
+          "description": "완료의 객관 판정 명령. 모두 통과해야 done.",
+          "required": ["test_command"],
+          "additionalProperties": false,
+          "properties": {
+            "test_command": { "type": "string" },
+            "lint_command": { "type": "string" },
+            "type_command": { "type": "string" },
+            "extra_checks": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "loop": {
+          "type": "object",
+          "description": "ralph 정지 정책(폭주/비용 차단).",
+          "required": ["max_iterations", "cost_budget_usd"],
+          "additionalProperties": false,
+          "properties": {
+            "max_iterations": { "type": "integer", "minimum": 1 },
+            "iterations_used": { "type": "integer", "minimum": 0, "default": 0 },
+            "max_wall_time_sec": { "type": "integer", "minimum": 1 },
+            "max_diff_lines": { "type": "integer", "minimum": 1 },
+            "cost_budget_usd": { "type": "number", "minimum": 0 },
+            "cost_spent_usd": { "type": "number", "minimum": 0, "default": 0 },
+            "stop_reason": { "enum": ["", "success", "max_iter", "budget", "wall_time", "diff_size", "escalation"], "default": "" }
+          }
+        },
+        "model_roles": {
+          "type": "object",
+          "description": "역할별 모델 배정. generator와 verifier는 서로 다른 모델이어야 함(불변 규칙).",
+          "additionalProperties": false,
+          "properties": {
+            "generator": { "$ref": "#/$defs/modelRef" },
+            "verifier": { "$ref": "#/$defs/modelRef" },
+            "doc_reviewer": { "$ref": "#/$defs/modelRef" }
+          }
+        },
+        "human_gate": { "type": "boolean", "default": false, "description": "prod 영향 등 사람 승인 필요 여부" },
+        "memory": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "index_on": { "enum": ["post_merge"], "default": "post_merge", "description": "검증 시점에만 memsearch 인덱싱" },
+            "status": { "enum": ["verified", "unverified", "deprecated"], "default": "unverified" },
+            "outcome": { "enum": ["success", "failure"] }
+          }
+        },
+        "created_at": { "type": "string", "format": "date-time" },
+        "updated_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "modelRef": {
+      "type": "object",
+      "required": ["provider", "model"],
+      "additionalProperties": false,
+      "properties": {
+        "provider": { "type": "string" },
+        "model": { "type": "string" }
+      }
+    }
+  }
+}

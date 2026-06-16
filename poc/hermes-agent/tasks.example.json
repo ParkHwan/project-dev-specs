@@ -1,0 +1,69 @@
+{
+  "version": "0.1.0",
+  "project_id": "sample-project",
+  "tasks": [
+    {
+      "id": "TASK-201",
+      "title": "POST /api/v1/orders 생성 엔드포인트(멱등성 포함)",
+      "mode": "build",
+      "patch_mode": true,
+      "status": "todo",
+      "depends_on": [],
+      "acceptance_criteria": [
+        "Idempotency-Key 재요청 시 중복 생성 없이 최초 결과 반환",
+        "필수 필드 검증 실패 시 400 VALIDATION_ERROR",
+        "이메일/주문번호 중복 시 409 CONFLICT"
+      ],
+      "gate": {
+        "test_command": "pytest tests/orders -q",
+        "lint_command": "ruff check .",
+        "type_command": "mypy app/orders",
+        "extra_checks": ["openapi-diff api/openapi.yaml"]
+      },
+      "loop": {
+        "max_iterations": 6,
+        "iterations_used": 0,
+        "max_wall_time_sec": 1200,
+        "max_diff_lines": 400,
+        "cost_budget_usd": 5,
+        "cost_spent_usd": 0,
+        "stop_reason": ""
+      },
+      "model_roles": {
+        "generator": { "provider": "openrouter", "model": "openai/gpt-5.3-codex" },
+        "verifier": { "provider": "anthropic", "model": "claude-opus-4" }
+      },
+      "human_gate": false,
+      "memory": {
+        "index_on": "post_merge",
+        "status": "unverified"
+      },
+      "created_at": "2026-01-01T00:00:00Z",
+      "updated_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "TASK-900",
+      "title": "운영: 결제 타임아웃 간헐 오류 트러블슈팅",
+      "mode": "operate",
+      "patch_mode": true,
+      "status": "todo",
+      "acceptance_criteria": [
+        "재현 테스트가 실패→통과로 전환",
+        "회귀 테스트 추가"
+      ],
+      "gate": {
+        "test_command": "pytest tests/payments -q"
+      },
+      "loop": {
+        "max_iterations": 3,
+        "cost_budget_usd": 2
+      },
+      "model_roles": {
+        "generator": { "provider": "openrouter", "model": "openai/gpt-5.3-codex" },
+        "verifier": { "provider": "anthropic", "model": "claude-opus-4" }
+      },
+      "human_gate": true,
+      "memory": { "index_on": "post_merge", "status": "unverified" }
+    }
+  ]
+}
