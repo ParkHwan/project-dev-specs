@@ -25,8 +25,9 @@
 
 - **메인** = Claude via **OpenRouter** (`OPENROUTER_API_KEY`) — Orchestrator + Code Verifier
 - **서브** = Codex (`OPENAI_API_KEY`) = Generator / Gemini (`GEMINI_API_KEY`) = Doc·Arch Reviewer
+- **비용 모드**: 빌드는 구독 CLI(`codex`/`claude`/`gemini`)로 ralph 호출 = 추가 과금 0 / 무인 운영만 hermes(API). 역할별 `runner`는 tasks.json `model_roles.*.runner`로 지정.
 - Anthropic 직접 키는 쓰지 않는다. `~/.hermes/.env`에 위 3개 키를 둔다(커밋 금지).
-- ⚠️ 서브에이전트별 모델 분리가 hermes 단독으로 되는지는 미확정 → `EXPERIMENT_role_model_separation.md`로 실측.
+- ✅ 실측 결과(2026-06-16): 서브에이전트별 모델 분리는 hermes 단독 **불가** → **ralph 래퍼**가 역할별 호출로 분리(`EXPERIMENT_role_model_separation.md` 참고).
 
 ## 빠른 시작 (격리 실행 예시)
 

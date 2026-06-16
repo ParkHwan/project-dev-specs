@@ -45,6 +45,19 @@
 
 ---
 
+## 에이전트 실행 비용 모델 (구독 vs API)
+
+ralph는 외부 오케스트레이터이고 실행기(runner)는 교체 가능하다. 역할별로 runner를 골라 비용을 통제한다.
+
+| 모드 | runner | 비용 | 용도 |
+|------|--------|------|------|
+| 빌드 | 구독 CLI(`codex`/`claude`/`gemini`) | **추가 과금 0**(보유 구독 정액제) | 개발 단계 ralph 루프 |
+| 운영(무인) | hermes(API, OpenRouter 등) | 토큰 과금 | cron·메신저 트리거 등 구독 CLI로 불가한 자동화 |
+
+- 원칙: **개발은 구독 CLI로, API는 구독 CLI로 못 하는 무인 자동화에만**.
+- 주의: 구독 CLI를 루프로 스크립팅하면 **rate limit**(구독 사용량 한도)·ToS 확인 필요. 비대화 모드(`codex exec`, `claude -p`, `gemini -p`)가 지원 경로.
+- 역할별 runner는 `poc/hermes-agent/tasks.schema.json`의 `model_roles.*.runner`로 지정(생략 시 hermes). 구현: `poc/hermes-agent/ralph_loop.sh`.
+
 ## 🔗 관련 문서
 - [배포 아키텍처](../02_architecture/deployment_arch.md)
 - [Infrastructure as Code](./infrastructure_as_code.md)

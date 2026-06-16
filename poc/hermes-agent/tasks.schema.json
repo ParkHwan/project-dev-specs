@@ -83,6 +83,11 @@
       "required": ["provider", "model"],
       "additionalProperties": false,
       "properties": {
+        "runner": {
+          "enum": ["hermes", "codex", "claude", "gemini"],
+          "default": "hermes",
+          "description": "이 역할을 실행할 도구. hermes=API(과금), codex/claude/gemini=구독 CLI(빌드 모드, 무료). 생략 시 hermes. 구독 CLI는 계정 기본 모델을 쓰므로 provider/model은 의도 기록용."
+        },
         "provider": { "type": "string" },
         "model": { "type": "string" }
       }
