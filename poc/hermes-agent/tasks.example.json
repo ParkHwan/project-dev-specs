@@ -30,9 +30,9 @@
         "stop_reason": ""
       },
       "model_roles": {
-        "generator": { "provider": "openrouter", "model": "openai/gpt-5-codex" },
+        "generator": { "provider": "openrouter", "model": "openai/gpt-5.3-codex" },
         "verifier": { "provider": "openrouter", "model": "anthropic/claude-opus-4-8" },
-        "doc_reviewer": { "provider": "openrouter", "model": "google/gemini-2.5-pro" }
+        "doc_reviewer": { "provider": "openrouter", "model": "google/gemini-3.5-flash" }
       },
       "human_gate": false,
       "memory": {
@@ -60,9 +60,9 @@
         "cost_budget_usd": 2
       },
       "model_roles": {
-        "generator": { "provider": "openrouter", "model": "openai/gpt-5-codex" },
+        "generator": { "provider": "openrouter", "model": "openai/gpt-5.3-codex" },
         "verifier": { "provider": "openrouter", "model": "anthropic/claude-opus-4-8" },
-        "doc_reviewer": { "provider": "openrouter", "model": "google/gemini-2.5-pro" }
+        "doc_reviewer": { "provider": "openrouter", "model": "google/gemini-3.5-flash" }
       },
       "human_gate": true,
       "memory": { "index_on": "post_merge", "status": "unverified" }
