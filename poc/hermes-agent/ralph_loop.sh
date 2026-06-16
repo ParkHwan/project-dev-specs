@@ -25,7 +25,8 @@ run_role() {
     hermes) command -v hermes >/dev/null || { echo "[ERR] hermes 미설치"; return 1; }
             hermes -z "$4" -m "$2" --provider "$3" ;;
     codex)  command -v codex  >/dev/null || { echo "[ERR] codex 미설치"; return 1; }
-            codex exec --skip-git-repo-check "$4" ;;            # ChatGPT 구독(codex login)
+            # 생성 역할은 파일 쓰기 필요 → workspace-write 샌드박스. (기본은 read-only라 생성 불가)
+            codex exec --skip-git-repo-check --sandbox workspace-write "$4" ;;   # ChatGPT 구독(codex login). -m 무시(계정 모델 사용)
     claude) command -v claude >/dev/null || { echo "[ERR] claude 미설치"; return 1; }
             claude -p "$4" ;;                                    # Claude 구독(Claude Code). 생성 역할이면 권한 플래그 필요  # 확인 필요
     gemini) command -v gemini >/dev/null || { echo "[ERR] gemini 미설치"; return 1; }

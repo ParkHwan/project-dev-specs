@@ -58,3 +58,11 @@
 - 해소된 불확실성: hermes `-z` oneshot이 **파일을 실제로 생성**함, **VERDICT 파싱 동작**.
 
 결론: **객관 게이트 기반 반자율 + 역할별 모델 분리(ralph 래퍼)** 아키텍처가 실제로 동작함을 확인. 다음은 실제 프로젝트 TASK(실 테스트 게이트)로 확장.
+
+## 구독 CLI 모드 실증 (2026-06-16, PASS — 비용 0 경로)
+
+`ralph_loop.sh tasks.smoke.sub.json`(generator=codex, verifier=claude)을 **호스트**에서 실행:
+- **codex(ChatGPT 구독)** 가 생성 역할로 동작, **claude(Claude 구독)** 가 검증 역할로 `VERDICT: APPROVE` 출력 → success. **추가 API 과금 0**.
+- 확인 사실: 구독 CLI는 **계정 기본 모델**을 사용(codex가 `gpt-5.5`로 실행, tasks.json의 `model`은 의도 기록용·`-m` 무시).
+- ⚠️ 주의: codex `exec`의 기본 샌드박스는 **read-only**라 신규 파일을 못 쓴다. 생성 역할은 `--sandbox workspace-write` 필요(ralph_loop에 반영). 위 1회는 calc.py가 이전 잔존본이라 통과했으므로, **신규 생성 검증은 calc.py 삭제 후 재실행**으로 확인할 것.
+- 실행 위치: 구독 CLI는 호스트에 로그인되어 있으므로 **호스트에서 실행**(hermes만 컨테이너 격리).
