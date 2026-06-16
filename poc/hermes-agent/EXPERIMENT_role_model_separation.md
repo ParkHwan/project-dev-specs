@@ -48,3 +48,13 @@
 | 비고 | hermes OpenAI 키 슬롯은 STT/TTS용 → GPT/Codex chat은 OpenRouter로. 시크릿 마스킹/승인 게이트가 키 셸 전파를 차단(보안 정상 작동). |
 
 **확정 결론**: hermes 내부 서브에이전트로는 Generator≠Verifier를 만들 수 없다. ralph가 역할마다 `hermes -z -m <모델> --provider openrouter`로 호출하여 LLM 레벨 분리를 보장한다. → `operating_model.md` 토폴로지 절에 반영함.
+
+## ralph 래퍼 end-to-end 실증 (2026-06-16, PASS)
+
+`ralph_loop.sh poc/hermes-agent/tasks.smoke.json` 1회 실행 결과:
+- **역할 분리 실증**: 생성 = `openai/gpt-5.3-codex`, 검증 = `anthropic/claude-opus-4-8` — OpenRouter 대시보드에 두 모델 각각 호출 확인.
+- **루프 정상**: iter 1 → 생성(calc.py 작성) → **게이트 PASS**(check.py `GATE OK`) → 적대적 검증 → `VERDICT: APPROVE` → `stop_reason=success`.
+- **adversarial verify 동작**: 검증자가 오버플로·음수·교환법칙으로 반증 시도 후, 타입검증은 TASK 스코프 밖이라 정확히 판단하고 승인.
+- 해소된 불확실성: hermes `-z` oneshot이 **파일을 실제로 생성**함, **VERDICT 파싱 동작**.
+
+결론: **객관 게이트 기반 반자율 + 역할별 모델 분리(ralph 래퍼)** 아키텍처가 실제로 동작함을 확인. 다음은 실제 프로젝트 TASK(실 테스트 게이트)로 확장.
